@@ -187,6 +187,31 @@ class SturdyBot(object):
         else:
             self.tankMover.on_for_seconds(leftSpeed, rightSpeed, runTime)
 
+    def steerMove(self, translateSpeed, heading, runTime=None):
+        """Takes in two speeds, a translational speed in the direction the robot is facing,
+        and a rotational speed both between -1.0 and 1.0 inclusively. Also takes in an
+        optional time in seconds for the motors to run.
+        It converts the speeds to left and right wheel speeds, and then calls the tankMover."""
+        print("Translational speed:", translateSpeed, "Rotational speed:", heading)
+        wheelDist = 12 * 19.5
+        assert -100.0 <= translateSpeed <= 100.0
+        assert -100.0 <= heading <= 100.0
+        transMotorSp = translateSpeed
+        rotMotorSp = heading
+
+        # # Here are formulas for converting from translate and rotate speeds to left and right
+        # # These formulas need to know the distance between the two wheels in order to work
+        # # which I measured to be 12 cm on my robot. But we have to watch out for units here
+        # # the speeds are in "ticks" (degrees) per second, so we need to map rotational ticks
+        # # to centimeters. I measured 360 ticks moving the robot 18.5 cm forward, so 1cm is
+        # # 19.5 tics. Thus the wheel distance is 12 * 19.5 = 234 ticks.
+        # leftSpeed = transMotorSp - (rotMotorSp * wheelDist) / 2.0
+        # rightSpeed = transMotorSp + (rotMotorSp * wheelDist) / 2.0
+        # print("SPEEDS:", leftSpeed, rightSpeed)
+        if runTime is None:
+            self.steerMover.on(heading, translateSpeed)
+        else:
+            self.steerMover.on_for_seconds(heading, translateSpeed, runTime)
 
     def zeroPointer(self):
         """Turns the medium motor/pointer to the zero angle position. """
