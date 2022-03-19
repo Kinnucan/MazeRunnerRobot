@@ -1,4 +1,7 @@
 
+from turtle import towards
+from PotentialFieldBrain import PotentialFieldBrain
+from TowardsColor import TowardsColor
 from ev3dev2.motor import MediumMotor, LargeMotor, MotorSet, MoveTank, MoveSteering
 from ev3dev2.motor import OUTPUT_A, OUTPUT_B, OUTPUT_C, OUTPUT_D
 from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
@@ -246,15 +249,32 @@ class SturdyBot(object):
 if __name__ == "__main__":
     firstConfig = {SturdyBot.LEFT_MOTOR: OUTPUT_C,
                    SturdyBot.RIGHT_MOTOR: OUTPUT_B,
+                   SturdyBot.MEDIUM_MOTOR: OUTPUT_A,
+                   SturdyBot.RIGHT_TOUCH: INPUT_1,
+                   SturdyBot.ULTRA_SENSOR: INPUT_2,
+                   SturdyBot.COLOR_SENSOR: INPUT_3,
                    SturdyBot.LEFT_TOUCH: INPUT_4}
     # SturdyBot.MEDIUM_MOTOR: OUTPUT_D}
     # SturdyBot.COLOR_SENSOR: INPUT_1}
-    touchyRobot = SturdyBot('Touchy', firstConfig)
-    print("Setup done")
-    for i in range(5):
-        touchValues = touchyRobot.readTouch()
-        print("Touch values:", touchValues)
-        touchyRobot.forward(25.0, 2.0)
-        touchyRobot.curve(50.0, 75.0, 1.0)
-        touchyRobot.stop()
+    # touchyRobot = SturdyBot('Touchy', firstConfig)
+    # print("Setup done")
+    # for i in range(5):
+    #     touchValues = touchyRobot.readTouch()
+    #     print("Touch values:", touchValues)
+    #     touchyRobot.forward(25.0, 2.0)
+    #     touchyRobot.curve(50.0, 75.0, 1.0)
+    #     touchyRobot.stop()
+    naruto = SturdyBot('Naruto', firstConfig)
+    narutoBrain = PotentialFieldBrain.PotentialFieldBrain(naruto)
 
+    # towardsColor = TowardsColor(naruto)
+    # narutoBrain.add( towardsColor )
+
+    runTime = 120
+    startTime = time.time()
+    elapsedTime = 0.0
+    while elapsedTime < runTime:
+        print("======================================")
+        narutoBrain.step()
+        elapsedTime = time.time() - startTime
+    narutoBrain.stopAll()
