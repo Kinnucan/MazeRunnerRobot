@@ -79,7 +79,6 @@ class SturdyBot(object):
                 print("Error while setting the item: " + item)
 
 
-
     def readTouch(self):
         """Reports the value of both touch sensors, OR just one if only one is connected, OR
         prints an alert and returns nothing if neither is connected."""
@@ -93,6 +92,29 @@ class SturdyBot(object):
             print("Warning, no touch sensor connected")
             return None, None
 
+    
+    def readReflect(self):
+        return self.colorSensor.reflected_light_intensity
+
+    
+    def readAmbient(self):
+        return self.colorSensor.ambient_light_intensity
+
+    
+    def readColor(self):
+        return self.colorSensor.color
+
+
+    def readRGBColor(self):
+        return self.colorSensor.raw
+
+
+    def readDistance(self):
+        return self.ultraSensor.distance_centimeters
+
+    
+    def readGyroAngle(self):
+        return self.gyroSensor.angle
 
 
     def calibrateWhite(self):
@@ -103,8 +125,6 @@ class SturdyBot(object):
         else:
             print("Warning, no color sensor connected")
             return None
-
-
 
 
     def forward(self, speed, runTime=None):
@@ -155,6 +175,7 @@ class SturdyBot(object):
         # Stop the medium motor as well
         if self.mediumMotor is not None:
             self.mediumMotor.stop()
+
 
     def curve(self, leftSpeed, rightSpeed, runTime=None):
         """Given speeds for left and right motors, runs the motors to make the robot travel in a curve."""
