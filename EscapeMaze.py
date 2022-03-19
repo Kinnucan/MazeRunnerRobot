@@ -15,14 +15,11 @@ def run():
 
     wander = Wanderer()
     escape = TowardsLight(robot)
-    obstacleForce_straight = ObstacleForce(robot, 0)
-    obstacleForce_right = ObstacleForce(robot, 40)
-    obstacleForce_left = ObstacleForce(robot, -40)
+    obstacleForce = ObstacleForce(robot)
 
     brain.add(  wander  )
     brain.add(  escape  )
-    brain.add(  obstacleForce_straight  )
-
+    brain.add(  obstacleForce  )
 
     notOut = True
     while notOut:
