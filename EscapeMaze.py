@@ -21,7 +21,7 @@ def run():
 
     brain.add(  wander  )
     brain.add(  escape  )
-    brain.add
+    brain.add(  obstacleForce_straight  )
 
     notOut = True
     while notOut:
