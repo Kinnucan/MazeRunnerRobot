@@ -23,6 +23,7 @@ def run():
     brain.add(  escape  )
     brain.add(  obstacleForce_straight  )
 
+
     notOut = True
     while notOut:
         brain.step()
