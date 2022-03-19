@@ -9,14 +9,12 @@ class Wanderer:
     def run(self):
         rawData = self.robot.readAmbient()
 
-        turnRange = 0
+        num = 0
         if 0 <= rawData <= 30:
-            turnRange = 20
-
+            num = random.randint(self.prevHead - 20, (self.prevHead + 20))
         if 30 <= rawData <= 60:
-            turnRange = 10
+            num = random.randint(self.prevHead - 10, (self.prevHead + 10))
 
-        num = random.randint(self.prevHead - turnRange, (self.prevHead+turnRange) )
         print(self.prevHead)
         self.prevHead = num
-        return 10, num
+        return 5, num
