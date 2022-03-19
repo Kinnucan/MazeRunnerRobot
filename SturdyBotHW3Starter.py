@@ -264,17 +264,3 @@ if __name__ == "__main__":
     #     touchyRobot.forward(25.0, 2.0)
     #     touchyRobot.curve(50.0, 75.0, 1.0)
     #     touchyRobot.stop()
-    naruto = SturdyBot('Naruto', firstConfig)
-    narutoBrain = PotentialFieldBrain.PotentialFieldBrain(naruto)
-
-    # towardsColor = TowardsColor(naruto)
-    # narutoBrain.add( towardsColor )
-
-    runTime = 120
-    startTime = time.time()
-    elapsedTime = 0.0
-    while elapsedTime < runTime:
-        print("======================================")
-        narutoBrain.step()
-        elapsedTime = time.time() - startTime
-    narutoBrain.stopAll()

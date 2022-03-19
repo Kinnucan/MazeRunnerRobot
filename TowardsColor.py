@@ -10,12 +10,12 @@ class TowardsColor:
 
     def run(self):
         if (self.targetFound):
-            return 100.0, 0.0
+            return 50.0, 0.0
         else:
             currentColor = self.robot.readColor()
             if currentColor == self.targetColor:
                 self.targetFound = True
-                return 100.0, 0.0
+                return 50.0, 0.0
             else:
                 num = random.randint(self.prevHead - 20, self.prevHead + 20)
                 self.prevHead = num
