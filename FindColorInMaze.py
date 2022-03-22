@@ -36,7 +36,7 @@ def run():
     colorNotFound = True
     while colorNotFound:
         brain.step()
-        if (robot.readColor == 0 and robot.ultraSensor <= 10):
+        if (robot.readColor == 5 and robot.ultraSensor <= 10):
             colorNotFound = False
     brain.stopAll()
 
