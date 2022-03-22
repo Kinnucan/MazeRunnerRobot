@@ -52,12 +52,12 @@ class SturdyBot(object):
             configDict = self.DEFAULT_CONFIG
         # Call the method to set up the setup sensors and motors
         self.setupSensorsMotors(configDict)
-        assert (self.LEFT_MOTOR in configDict) and (self.RIGHT_MOTOR in configDict)
+        assert (self.LEFT_MOTOR in configDict) and (
+            self.RIGHT_MOTOR in configDict)
         leftPort = configDict[self.LEFT_MOTOR]
         rightPort = configDict[self.RIGHT_MOTOR]
         self.tankMover = MoveTank(leftPort, rightPort)
         # self.steerMover = MoveSteering(leftPort, rightPort)
-
 
     def setupSensorsMotors(self, configDict):
         """Method to set up all the sensors and motors based on the input configuration"""
@@ -81,7 +81,6 @@ class SturdyBot(object):
             else:
                 print("Error while setting the item: " + item)
 
-
     def readTouch(self):
         """Reports the value of both touch sensors, OR just one if only one is connected, OR
         prints an alert and returns nothing if neither is connected."""
@@ -95,30 +94,23 @@ class SturdyBot(object):
             print("Warning, no touch sensor connected")
             return None, None
 
-    
     def readReflect(self):
         return self.colorSensor.reflected_light_intensity
 
-    
     def readAmbient(self):
         return self.colorSensor.ambient_light_intensity
 
-    
     def readColor(self):
         return self.colorSensor.color
-
 
     def readRGBColor(self):
         return self.colorSensor.raw
 
-
     def readDistance(self):
         return self.ultraSensor.distance_centimeters
 
-    
     def readGyroAngle(self):
         return self.gyroSensor.angle
-
 
     def calibrateWhite(self):
         """Calls the underlying calibrate_white method, which adjusts reported RGB colors
@@ -128,7 +120,6 @@ class SturdyBot(object):
         else:
             print("Warning, no color sensor connected")
             return None
-
 
     def forward(self, speed, runTime=None):
         """Make the robot move forward with the given speed. If there is no given time,
@@ -140,14 +131,12 @@ class SturdyBot(object):
         else:
             self.tankMover.on_for_seconds(speed, speed, runTime)
 
-
     def backward(self, speed, runTime=None):
         """Make the robot to move backward with the given speed"""
         # This method will call the forward method with a negative speed
         assert -100.0 <= speed <= 100.0
         assert self.tankMover is not None
         self.forward(-speed, runTime)
-
 
     def turnLeft(self, speed, runTime=None):
         """Make the robot to turn left in place with the given speed.
@@ -159,7 +148,6 @@ class SturdyBot(object):
         else:
             self.tankMover.on_for_seconds(-speed, speed, runTime)
 
-
     def turnRight(self, speed, runTime=None):
         """Make the robot to turn right in place with the given speed.
                 If there is no given time, the robot keeps turning forever"""
@@ -170,7 +158,6 @@ class SturdyBot(object):
         else:
             self.tankMover.on_for_seconds(speed, -speed, runTime)
 
-
     def stop(self):
         """Turns off the motors."""
         assert self.tankMover is not None
@@ -178,7 +165,6 @@ class SturdyBot(object):
         # Stop the medium motor as well
         if self.mediumMotor is not None:
             self.mediumMotor.stop()
-
 
     def curve(self, leftSpeed, rightSpeed, runTime=None):
         """Given speeds for left and right motors, runs the motors to make the robot travel in a curve."""
@@ -195,7 +181,8 @@ class SturdyBot(object):
         and a rotational speed both between -1.0 and 1.0 inclusively. Also takes in an
         optional time in seconds for the motors to run.
         It converts the speeds to left and right wheel speeds, and then calls the tankMover."""
-        print("Translational speed:", translateSpeed, "Rotational speed:", heading)
+        print("Translational speed:", translateSpeed,
+              "Rotational speed:", heading)
         wheelDist = 12 * 19.5
         assert -100.0 <= translateSpeed <= 100.0
         assert -100.0 <= heading <= 100.0
@@ -220,7 +207,6 @@ class SturdyBot(object):
         """Turns the medium motor/pointer to the zero angle position. """
         self.mediumMotor.on_to_position(30, 0)
 
-
     def pointerTurn(self, speed=50.0, runTime=None):
         """Turns the medium moter counter-clockwise at the given speed, stopping
         after some time if a time is specified. If negative speed is input, then
@@ -231,13 +217,11 @@ class SturdyBot(object):
         else:
             self.mediumMotor.on_for_seconds(speed, runTime)
 
-
     def pointerTurnBy(self, angle, speed=50.0):
         """Given an angle, turn counter-clockwise by that many degrees (negative
         values cause clockwise turn. Speed input is optional."""
         assert -100.0 <= speed <= 100.0
         self.mediumMotor.on_for_degrees(angle, speed)
-
 
     def pointerTurnTo(self, angle):
         """Turns to the specified angle"""

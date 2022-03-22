@@ -18,3 +18,8 @@ class Wanderer:
         print(self.prevHead)
         self.prevHead = num
         return 5, num
+
+    def behaveContinous(self):
+        turnRange = 180 - self.robot.readAmbient()
+        random.randint(180)
+        pass
