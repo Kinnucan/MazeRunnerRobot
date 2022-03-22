@@ -7,6 +7,7 @@ import time
 config = {SturdyBot.LEFT_MOTOR: OUTPUT_C, SturdyBot.RIGHT_MOTOR: OUTPUT_B, SturdyBot.MEDIUM_MOTOR: OUTPUT_A,
           SturdyBot.ULTRA_SENSOR: INPUT_2, SturdyBot.COLOR_SENSOR: INPUT_3}
 robot = SturdyBot("Maze Escaper", config)
+print('Calibrating White')
 robot.calibrateWhite()
 
 
@@ -14,8 +15,10 @@ def run():
     iteration = 0
     while True:
         try:
-            print('Iteration:', iteration,
-                  '\t | Ambient Reading:', robot.readAmbient())
+            print('Iteration:\t', iteration, '|***************************')
+            print('Ambient Reading:\t', robot.readAmbient())
+            print('RGB Color Reading:\t', robot.readRGBColor())
+            print()
             iteration += 1
             time.sleep(1)
         except KeyboardInterrupt:
