@@ -57,7 +57,7 @@ class SturdyBot(object):
         leftPort = configDict[self.LEFT_MOTOR]
         rightPort = configDict[self.RIGHT_MOTOR]
         self.tankMover = MoveTank(leftPort, rightPort)
-        # self.steerMover = MoveSteering(leftPort, rightPort)
+        self.steerMover = MoveSteering(leftPort, rightPort)
 
     def setupSensorsMotors(self, configDict):
         """Method to set up all the sensors and motors based on the input configuration"""

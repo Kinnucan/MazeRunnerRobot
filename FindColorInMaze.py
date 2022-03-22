@@ -1,6 +1,6 @@
 from PotentialFieldBrain import PotentialFieldBrain
 from TowardsColor import TowardsColor
-from ObstacleForce import  ObstacleForce
+from ObstacleForce import ObstacleForceV2
 from SturdyBotHW3Starter import SturdyBot
 from ev3dev2.motor import OUTPUT_A, OUTPUT_B, OUTPUT_C, OUTPUT_D
 from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
@@ -20,15 +20,18 @@ def run():
     brain = PotentialFieldBrain.PotentialFieldBrain(robot)
 
     towardsColor = TowardsColor(robot)
-    obstacleForce_straight = ObstacleForce(robot, 0)
-    obstacleForce_right = ObstacleForce(robot, 40)
-    obstacleForce_left = ObstacleForce(robot, -40)
+    obstacleForce_straight = ObstacleForceV2(robot, 0)
+    obstacleForce_right_angle = ObstacleForceV2(robot, 45)
+    obstacleForce_right = ObstacleForceV2(robot, 180)
+    obstacleForce_left_angle = ObstacleForceV2(robot, -45)
+    obstacleForce_left = ObstacleForceV2(robot, -180)
 
     brain.add( towardsColor )
     brain.add( obstacleForce_straight )
+    brain.add( obstacleForce_right_angle )
     brain.add( obstacleForce_right )
     brain.add( obstacleForce_left )
-
+    brain.add( obstacleForce_left_angle )
 
     colorNotFound = True
     while colorNotFound:
