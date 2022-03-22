@@ -1,7 +1,7 @@
 import random
 
 class TowardsColor:
-    
+
     def __init__(self, obj):
         self.robot = obj
         self.prevHead = 0
@@ -19,4 +19,4 @@ class TowardsColor:
             else:
                 num = random.randint(self.prevHead - 20, self.prevHead + 20)
                 self.prevHead = num
-                return 10, num
+                return 10.0, 0.0
