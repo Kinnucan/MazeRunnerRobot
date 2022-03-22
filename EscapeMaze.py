@@ -11,28 +11,26 @@ config = {SturdyBot.LEFT_MOTOR: OUTPUT_C, SturdyBot.RIGHT_MOTOR: OUTPUT_B, Sturd
           SturdyBot.ULTRA_SENSOR: INPUT_1}  # fill this in
 robot = SturdyBot("Maze Escaper", config)
 
-
 def run():
-    brain = PotentialFieldBrain.PotentialFieldBrain(robot)
+    brain = PotentialFieldBrain(robot)
 
     wander = Wanderer()
     escape = TowardsLight(robot)
-    obstacleForce = ObstacleForce(robot)
+    #obstacleForce = ObstacleForce(robot)
 
     brain.add(wander)
     brain.add(escape)
-    brain.add(obstacleForce)
+    #brain.add(obstacleForce)
 
     notOut = True
     while notOut:
         try:
             brain.step()
-            if robot.readAmbient() == 100:
+            if robot.readAmbient() >= 4:
                 notOut = False
         except KeyboardInterrupt:
             brain.stopAll()
             sys.exit(0)
     brain.stopAll()
-
 
 run()

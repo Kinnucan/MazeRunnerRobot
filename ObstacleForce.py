@@ -11,10 +11,11 @@ class ObstacleForce:
         if rawData < 0:
             rawData = 0
 
-        if rawData < 30:
+        if rawData < 5:
             angle = -180
-        elif rawData > 30:
+        elif rawData > 5:
             angle = 0
+        print("Distance to an Obstacle: ", rawData, "\n")
         return 0, angle
 
 class ObstacleForceV2:

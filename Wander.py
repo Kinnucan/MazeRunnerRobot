@@ -7,19 +7,11 @@ class Wanderer:
         self.robot = obj
         self.prevHead = 0
     def run(self):
-        rawData = self.robot.readAmbient()
+        print("Previous heading: ", self.prevHead, "\n")
 
-        num = 0
-        if 0 <= rawData <= 30:
-            num = random.randint(self.prevHead - 20, (self.prevHead + 20))
-        if 30 <= rawData <= 60:
-            num = random.randint(self.prevHead - 10, (self.prevHead + 10))
+        num = random.randint(self.prevHead - 10, (self.prevHead + 10))
+        print("Current Heading: ", num, "\n")
 
-        print(self.prevHead)
         self.prevHead = num
-        return 5, num
 
-    def behaveContinous(self):
-        turnRange = 180 - self.robot.readAmbient()
-        random.randint(180)
-        pass
+        return 5, num
