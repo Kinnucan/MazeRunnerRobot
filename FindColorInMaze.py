@@ -4,6 +4,7 @@ from ObstacleForce import ObstacleForceV2
 from SturdyBotHW3Starter import SturdyBot
 from ev3dev2.motor import OUTPUT_A, OUTPUT_B, OUTPUT_C, OUTPUT_D
 from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
+import sys
 
 config = {  
             SturdyBot.LEFT_MOTOR: OUTPUT_C,
@@ -35,9 +36,13 @@ def run():
 
     colorNotFound = True
     while colorNotFound:
-        brain.step()
-        if (robot.readColor == 5 and robot.ultraSensor <= 10):
-            colorNotFound = False
+        try:
+            brain.step()
+            if (robot.readColor == 5 and robot.ultraSensor <= 10):
+                colorNotFound = False
+        except KeyboardInterrupt:
+            brain.stopAll()
+            sys.exit(0)
     brain.stopAll()
 
 run()

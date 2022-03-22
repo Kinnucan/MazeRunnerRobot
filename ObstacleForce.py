@@ -33,13 +33,13 @@ class ObstacleForceV2:
         steerHeading = ((self.angle / 180.0) * 100.0)
 
         if (self.angle > 0):
-            self.robot.steerMove(15.0, steerHeading)
+            self.robot.steerMove(100.0, steerHeading)
             rawData = self.robot.ultraSensor.distance_centimeters
-            self.robot.steerMove(15.0, (-1 * steerHeading))
+            self.robot.steerMove(100.0, (-1 * steerHeading))
         elif (self.angle < 0):
-            self.robot.steerMove(15.0, steerHeading)
+            self.robot.steerMove(100.0, steerHeading)
             rawData = self.robot.ultraSensor.distance_centimeters
-            self.robot.steerMove(15.0, (-1 * steerHeading))
+            self.robot.steerMove(100.0, (-1 * steerHeading))
 
         if(rawData > 500):
             rawData = 500
