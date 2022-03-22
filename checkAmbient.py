@@ -5,7 +5,7 @@ import sys
 import time
 
 config = {SturdyBot.LEFT_MOTOR: OUTPUT_C, SturdyBot.RIGHT_MOTOR: OUTPUT_B, SturdyBot.MEDIUM_MOTOR: OUTPUT_A,
-          SturdyBot.ULTRA_SENSOR: INPUT_1}  # fill this in
+          SturdyBot.ULTRA_SENSOR: INPUT_2, SturdyBot.COLOR_SENSOR: INPUT_3, }
 robot = SturdyBot("Maze Escaper", config)
 
 
