@@ -19,19 +19,26 @@ class ObstacleForce:
 
 class ObstacleForceV2:
     # Alternate version of the above ObstacleForce class
-    # This one takes in an angle and rotates the medium motor
-    # in that direction, takes a reading from the ultrasonic sensor
-    # (presumably mounted on the medium motor) and then rotates
-    # the motor back to its original angle
-    
+    # This one takes in an angle and rotates the robot
+    # in the direction of the angle, takes a reading from the
+    # ultrasonic sensor and then rotates the robot back to its 
+    # original heading
+
     def __init__(self, obj, angle):
         self.robot = obj
         self.angle = angle
 
     def run(self):
-        self.robot.pointerTurnBy(self.angle, 15.0)
-        rawData = self.robot.ultraSensor.distance_centimeters
-        self.robot.pointerTurnBy((-1 * self.angle), 15.0)
+        rawData = 0
+
+        if (self.angle > 0):
+            self.robot.turnRightBy(15.0, self.angle)
+            rawData = self.robot.ultraSensor.distance_centimeters
+            self.robot.turnLeftBy(15.0, (-1 * self.angle))
+        elif (self.angle < 0):
+            self.robot.turnLeftBy(15.0, self.angle)
+            rawData = self.robot.ultraSensor.distance_centimeters
+            self.robot.turnLeftBy(15.0, (-1 * self.angle))
 
         if(rawData > 500):
             rawData = 500

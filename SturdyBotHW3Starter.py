@@ -1,7 +1,5 @@
 
 from turtle import towards
-from PotentialFieldBrain import PotentialFieldBrain
-from TowardsColor import TowardsColor
 from ev3dev2.motor import MediumMotor, LargeMotor, MotorSet, MoveTank, MoveSteering
 from ev3dev2.motor import OUTPUT_A, OUTPUT_B, OUTPUT_C, OUTPUT_D
 from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
@@ -159,6 +157,12 @@ class SturdyBot(object):
         else:
             self.tankMover.on_for_seconds(-speed, speed, runTime)
 
+    
+    def turnLeftBy(self, speed, angle):
+        assert -100.0 <= speed <= 100.0
+        assert self.tankMover is not None
+        self.tankMover.turn_left(speed, angle)
+
 
     def turnRight(self, speed, runTime=None):
         """Make the robot to turn right in place with the given speed.
@@ -169,6 +173,11 @@ class SturdyBot(object):
             self.tankMover.on(speed, -speed)
         else:
             self.tankMover.on_for_seconds(speed, -speed, runTime)
+
+    def turnRightBy(self, speed, angle):
+        assert -100.0 <= speed <= 100.0
+        assert self.tankMover is not None
+        self.tankMover.turn_right(speed, angle)
 
 
     def stop(self):
