@@ -146,12 +146,6 @@ class SturdyBot(object):
         else:
             self.tankMover.on_for_seconds(-speed, speed, runTime)
 
-    
-    def turnLeftBy(self, speed, angle):
-        assert -100.0 <= speed <= 100.0
-        assert self.tankMover is not None
-        self.tankMover.turn_left(speed, angle)
-
 
     def turnRight(self, speed, runTime=None):
         """Make the robot to turn right in place with the given speed.
@@ -162,11 +156,6 @@ class SturdyBot(object):
             self.tankMover.on(speed, -speed)
         else:
             self.tankMover.on_for_seconds(speed, -speed, runTime)
-
-    def turnRightBy(self, speed, angle):
-        assert -100.0 <= speed <= 100.0
-        assert self.tankMover is not None
-        self.tankMover.turn_right(speed, angle)
 
 
     def stop(self):
