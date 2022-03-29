@@ -39,7 +39,6 @@ def run():
     while colorNotFound:
         try:
             brain.step()
-            time.sleep(2.0)
             if (robot.readColor == 1 and robot.readDistance <= 10):
                 colorNotFound = False
         except KeyboardInterrupt:
