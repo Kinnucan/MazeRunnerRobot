@@ -1,4 +1,5 @@
 import random
+from typing_extensions import runtime
 
 
 class ObstacleForce:
@@ -70,27 +71,32 @@ class ObstacleForceV2:
 
     def run(self):
         rawData = 0
-        steerHeading = ((self.angle / 180.0) * 100.0)
+        # steerHeading = ((self.angle / 180.0) * 100.0)
+        runTime = ((abs(self.angle) / 180.0) * 10.0)
 
         if (self.angle > 0):
-            self.robot.steerMove(100.0, steerHeading)
+            self.robot.turnRight(30, runTime)
+            # self.robot.steerMove(100.0, steerHeading)
             rawData = self.robot.ultraSensor.distance_centimeters
-            self.robot.steerMove(100.0, (-1 * steerHeading))
+            # self.robot.steerMove(100.0, (-1 * steerHeading))
+            self.robot.turnLeft(30, (-1 * runTime))
         elif (self.angle < 0):
-            self.robot.steerMove(100.0, steerHeading)
+            self.robot.turnLeft(30, runTime)
+            # self.robot.steerMove(100.0, steerHeading)
             rawData = self.robot.ultraSensor.distance_centimeters
-            self.robot.steerMove(100.0, (-1 * steerHeading))
+            # self.robot.steerMove(100.0, (-1 * steerHeading))
+            self.robot.turnRight(30, (-1 * runTime))
 
         if(rawData > 500):
             rawData = 500
         if(rawData < 0):
             rawData = 0
 
-        angle = 0
+        new_angle = 0
 
         if (self.angle < 0):
-            angle = self.angle + 180
+            new_angle = self.angle + 180
         elif (self.angle > 0):
-            angle = self.angle - 180
+            new_angle = self.angle - 180
 
-        return (0, angle)
+        return (0, new_angle)
