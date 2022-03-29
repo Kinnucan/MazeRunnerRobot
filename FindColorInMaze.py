@@ -5,6 +5,7 @@ from SturdyBotHW3Starter import SturdyBot
 from ev3dev2.motor import OUTPUT_A, OUTPUT_B, OUTPUT_C, OUTPUT_D
 from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
 import sys
+import time
 
 config = {  
             SturdyBot.LEFT_MOTOR: OUTPUT_C,
@@ -20,14 +21,14 @@ robot = SturdyBot("Maze Escaper", config)
 def run():
     brain = PotentialFieldBrain.PotentialFieldBrain(robot)
 
-    towardsColor = TowardsColor(robot)
+    # towardsColor = TowardsColor(robot)
     obstacleForce_straight = ObstacleForceV2(robot, 0)
     obstacleForce_right_angle = ObstacleForceV2(robot, 45)
     obstacleForce_right = ObstacleForceV2(robot, 180)
     obstacleForce_left_angle = ObstacleForceV2(robot, -45)
     obstacleForce_left = ObstacleForceV2(robot, -180)
 
-    brain.add( towardsColor )
+    # brain.add( towardsColor )
     brain.add( obstacleForce_straight )
     brain.add( obstacleForce_right_angle )
     brain.add( obstacleForce_right )
@@ -38,6 +39,7 @@ def run():
     while colorNotFound:
         try:
             brain.step()
+            time.sleep(2.0)
             if (robot.readColor == 1 and robot.readDistance <= 10):
                 colorNotFound = False
         except KeyboardInterrupt:
