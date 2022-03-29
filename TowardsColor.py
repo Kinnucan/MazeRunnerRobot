@@ -13,6 +13,7 @@ class TowardsColor:
             return 100.0, 0.0
         else:
             currentColor = self.robot.readColor()
+            print("Color:")
             print(currentColor)
             if currentColor == self.targetColor:
                 self.targetFound = True

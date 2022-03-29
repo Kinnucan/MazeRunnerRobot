@@ -8,7 +8,7 @@ from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
 import sys
 
 config = {SturdyBot.LEFT_MOTOR: OUTPUT_C, SturdyBot.RIGHT_MOTOR: OUTPUT_B, SturdyBot.MEDIUM_MOTOR: OUTPUT_A,
-          SturdyBot.ULTRA_SENSOR: INPUT_1}  # fill this in
+          SturdyBot.ULTRA_SENSOR: INPUT_2}  # fill this in
 robot = SturdyBot("Maze Escaper", config)
 
 
