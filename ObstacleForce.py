@@ -1,5 +1,4 @@
 import random
-from typing_extensions import runtime
 
 
 class ObstacleForce:
@@ -79,13 +78,13 @@ class ObstacleForceV2:
             # self.robot.steerMove(100.0, steerHeading)
             rawData = self.robot.ultraSensor.distance_centimeters
             # self.robot.steerMove(100.0, (-1 * steerHeading))
-            self.robot.turnLeft(30, (-1 * runTime))
+            self.robot.turnLeft((-1 * 30), runTime)
         elif (self.angle < 0):
             self.robot.turnLeft(30, runTime)
             # self.robot.steerMove(100.0, steerHeading)
             rawData = self.robot.ultraSensor.distance_centimeters
             # self.robot.steerMove(100.0, (-1 * steerHeading))
-            self.robot.turnRight(30, (-1 * runTime))
+            self.robot.turnRight((-1 * 30), runTime)
 
         if(rawData > 500):
             rawData = 500
