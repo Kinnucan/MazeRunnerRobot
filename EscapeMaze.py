@@ -29,7 +29,7 @@ def run():
             brain.step()
             if robot.readAmbient() >= 4:
                 notOut = False
-        except KeyboardInterrupt:
+        except:
             brain.stopAll()
             sys.exit(0)
     brain.stopAll()
