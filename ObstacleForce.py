@@ -71,7 +71,9 @@ class ObstacleForceV2:
     def run(self):
         rawData = 0
         # steerHeading = ((self.angle / 180.0) * 100.0)
-        runTime = ((abs(self.angle) / 180.0) * 10.0)
+        runTime = ((abs(self.angle) / 180.0) * 1.0)
+        print("Runtime:")
+        print(runTime)
 
         if (self.angle > 0):
             self.robot.turnRight(30, runTime)
