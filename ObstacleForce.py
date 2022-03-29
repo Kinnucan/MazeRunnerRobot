@@ -7,19 +7,20 @@ class ObstacleForce:
 
     def run(self):
 
-        rawData = self.robot.ultraSensor.distance_centimeters
+        # rawData = self.robot.ultraSensor.distance_centimeters
 
-        if rawData > 100:
-            rawData = 100
-        if rawData < 0:
-            rawData = 0
+        # if rawData > 100:
+        #     rawData = 100
+        # if rawData < 0:
+        #     rawData = 0
 
-        if rawData < 5:
-            angle = -180
-        elif rawData > 5:
-            angle = 0
-        print("Distance to an Obstacle: ", rawData, "\n")
-        return 0, angle
+        # if rawData < 5:
+        #     angle = -180
+        # elif rawData > 5:
+        #     angle = 0
+        # print("Distance to an Obstacle: ", rawData, "\n")
+        # return 0, angle
+        return self.behaveDescrete()
 
     def behaveDescrete(self):
         scale = 1
