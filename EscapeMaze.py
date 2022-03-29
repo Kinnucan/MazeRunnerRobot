@@ -28,6 +28,7 @@ def run():
         try:
             brain.step()
             if robot.readAmbient() >= 4:
+                print('OH NOOOOOO!!! TOOO BRIGJHT!!!!')
                 notOut = False
         except:
             brain.stopAll()
