@@ -32,9 +32,15 @@ class ObstacleForce:
             (50, 80): (0, 0),
         }
 
+        actVec = (0, 0)
         for range, mag_ang in mag_ang_map.items():
             if range[0] <= dist < range[1]:
-                return mag_ang[0] * scale, mag_ang[1] * random.choice([-1, 1])
+                actVec = (mag_ang[0] * scale, mag_ang[1]
+                          * random.choice([-1, 1]))
+
+        print('[TowardsLight] Observation \t',
+              dist, ' | Action Vector \t', actVec)
+        return actVec
 
 
 class ObstacleForceV2:

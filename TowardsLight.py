@@ -30,6 +30,11 @@ class TowardsLight:
             (2, 4): 20,
         }
 
+        actVec = (0, 0)
         for range, mag in mag_map.items():
             if range[0] <= rawData_ambLight < range[1]:
-                return mag * scale, 0
+                actVec = (mag * scale, 0)
+                break
+        print('[TowardsLight] Observation \t',
+              rawData_ambLight, ' | Action Vector \t', actVec)
+        return actVec

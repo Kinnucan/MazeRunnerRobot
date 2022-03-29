@@ -25,4 +25,7 @@ class Wanderer:
         ang = ((self.prevHead + random.randint(-30,  30)) %
                90) * [1, -1][self.prevHead < 0]
         self.prevHead = ang
-        return mag * scale, ang
+        actVec = (mag * scale, ang)
+        print('[TowardsLight] Observation \t',
+              None, ' | Action Vector \t', actVec)
+        return actVec
