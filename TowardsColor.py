@@ -5,7 +5,7 @@ class TowardsColor:
     def __init__(self, obj):
         self.robot = obj
         self.prevHead = 0
-        self.targetColor = 5
+        self.targetColor = 4
         self.targetFound = False
 
     def run(self):

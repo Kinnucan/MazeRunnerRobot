@@ -38,7 +38,7 @@ def run():
     while colorNotFound:
         try:
             brain.step()
-            if (robot.readColor == 5 and robot.ultraSensor <= 10):
+            if (robot.readColor == 4 and robot.ultraSensor <= 10):
                 colorNotFound = False
         except KeyboardInterrupt:
             brain.stopAll()
