@@ -4,8 +4,7 @@ import random
 
 class Wanderer:
 
-    def __init__(self, obj):
-        self.robot = obj
+    def __init__(self):
         self.prevHead = 0
 
     def run(self):
