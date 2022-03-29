@@ -31,7 +31,7 @@ class ObstacleForce:
         if touch in [(False, False), (None, None)]:
             dist = self.robot.ultraSensor.distance_centimeters
             mag_ang_map = {
-                (0, 20): (50, 180),
+                (0, 20): (50, 120),
                 (20, 30): (20, 80),
                 (30, 50): (10, 40),
                 (50, 200): (0, 0),
@@ -48,7 +48,7 @@ class ObstacleForce:
         elif touch == (False, True):
             actVec = (40, -85)
         elif touch == (True, True):
-            actVec = (60, 180)
+            actVec = (60, 120)
 
         print('[ObstacleForce] Observation - Touch\t',
               touch, ' | Action Vector \t', actVec)
