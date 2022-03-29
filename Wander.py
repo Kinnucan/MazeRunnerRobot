@@ -25,6 +25,6 @@ class Wanderer:
                90) * [1, -1][self.prevHead < 0]
         self.prevHead = ang
         actVec = (mag * scale, ang)
-        print('[TowardsLight] Observation \t',
+        print('[Wanderer] Observation \t',
               None, ' | Action Vector \t', actVec)
         return actVec

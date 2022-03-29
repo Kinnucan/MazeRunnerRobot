@@ -24,21 +24,35 @@ class ObstacleForce:
 
     def behaveDescrete(self):
         scale = 1
-        dist = self.robot.ultraSensor.distance_centimeters
-        mag_ang_map = {
-            (0, 20): (40, 180),
-            (20, 30): (20, 80),
-            (30, 50): (10, 40),
-            (50, 80): (0, 0),
-        }
+        touch = self.robot.readTouch()
 
         actVec = (0, 0)
-        for range, mag_ang in mag_ang_map.items():
-            if range[0] <= dist < range[1]:
-                actVec = (mag_ang[0] * scale, mag_ang[1]
-                          * random.choice([-1, 1]))
 
-        print('[TowardsLight] Observation \t',
+        if touch in [(False, False), (None, None)]:
+            dist = self.robot.ultraSensor.distance_centimeters
+            mag_ang_map = {
+                (0, 20): (50, 180),
+                (20, 30): (20, 80),
+                (30, 50): (10, 40),
+                (50, 200): (0, 0),
+            }
+
+            for range, mag_ang in mag_ang_map.items():
+                if range[0] <= dist < range[1]:
+                    actVec = (mag_ang[0] * scale, mag_ang[1]
+                              * random.choice([-1, 1]))
+                    break
+
+        elif touch == (True, False):
+            actVec = (40, 85)
+        elif touch == (False, True):
+            actVec = (40, -85)
+        elif touch == (True, True):
+            actVec = (60, 180)
+
+        print('[ObstacleForce] Observation - Touch\t',
+              touch, ' | Action Vector \t', actVec)
+        print('[ObstacleForce] Observation - Dist\t',
               dist, ' | Action Vector \t', actVec)
         return actVec
 

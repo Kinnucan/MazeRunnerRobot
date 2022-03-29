@@ -26,8 +26,8 @@ class TowardsLight:
         scale = 1
         mag_map = {
             (0, 1): 0,
-            (1, 2): 10,
-            (2, 4): 20,
+            (1, 2): 30,
+            (2, 4): 40,
         }
 
         actVec = (0, 0)
