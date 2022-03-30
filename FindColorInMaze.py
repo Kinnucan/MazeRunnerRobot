@@ -21,14 +21,14 @@ robot = SturdyBot("Maze Escaper", config)
 def run():
     brain = PotentialFieldBrain.PotentialFieldBrain(robot)
 
-    # towardsColor = TowardsColor(robot)
+    towardsColor = TowardsColor(robot)
     obstacleForce_straight = ObstacleForceV2(robot, 0)
     obstacleForce_right_angle = ObstacleForceV2(robot, 45)
-    obstacleForce_right = ObstacleForceV2(robot, 180)
+    obstacleForce_right = ObstacleForceV2(robot, 90)
     obstacleForce_left_angle = ObstacleForceV2(robot, -45)
-    obstacleForce_left = ObstacleForceV2(robot, -180)
+    obstacleForce_left = ObstacleForceV2(robot, -90)
 
-    # brain.add( towardsColor )
+    brain.add( towardsColor )
     brain.add( obstacleForce_straight )
     brain.add( obstacleForce_right_angle )
     brain.add( obstacleForce_right )

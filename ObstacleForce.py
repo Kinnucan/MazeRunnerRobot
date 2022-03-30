@@ -72,25 +72,19 @@ class ObstacleForceV2:
         rawData = 0
         # steerHeading = ((self.angle / 180.0) * 100.0)
         runTime = ((abs(self.angle) / 180.0) * 1.0)
-        print("Runtime:")
-        print(runTime)
 
         if (self.angle > 0):
             self.robot.turnRight(30, runTime)
-            time.sleep(2.0)
             # self.robot.steerMove(100.0, steerHeading)
             rawData = self.robot.ultraSensor.distance_centimeters
             # self.robot.steerMove(100.0, (-1 * steerHeading))
             self.robot.turnLeft(30, runTime)
-            time.sleep(2.0)
         elif (self.angle < 0):
             self.robot.turnLeft(30, runTime)
-            time.sleep(2.0)
             # self.robot.steerMove(100.0, steerHeading)
             rawData = self.robot.ultraSensor.distance_centimeters
             # self.robot.steerMove(100.0, (-1 * steerHeading))
             self.robot.turnRight(30, runTime)
-            time.sleep(2.0)
 
         if(rawData > 500):
             rawData = 500
