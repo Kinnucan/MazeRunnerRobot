@@ -4,6 +4,8 @@ import random
 class ObstacleForce:
     def __init__(self, obj):
         self.robot = obj
+        self.touchCount = 0
+        self.closeCallCount = 0
 
     def run(self):
 
@@ -27,9 +29,9 @@ class ObstacleForce:
         touch = self.robot.readTouch()
 
         actVec = (0, 0)
+        dist = self.robot.ultraSensor.distance_centimeters
 
         if touch in [(False, False), (None, None)]:
-            dist = self.robot.ultraSensor.distance_centimeters
             mag_ang_map = {
                 (0, 20): (50, 120),
                 (20, 30): (20, 80),
@@ -42,19 +44,30 @@ class ObstacleForce:
                     actVec = (mag_ang[0] * scale, mag_ang[1]
                               * random.choice([-1, 1]))
                     break
-
         elif touch == (True, False):
             actVec = (40, 85)
         elif touch == (False, True):
             actVec = (40, -85)
         elif touch == (True, True):
             actVec = (60, 120)
-
+        # ************************************* #
+        if touch[0] or touch[1]:
+            self.touchCount += 1
+        if dist < 20:
+            self.closeCallCount += 1
+        # ************************************* #
         print('[ObstacleForce] Observation - Touch\t',
-              touch, ' | Action Vector \t', actVec)
+              touch, '\t| Action Vector \t', actVec)
         print('[ObstacleForce] Observation - Dist\t',
-              dist, ' | Action Vector \t', actVec)
+              dist, '\t| Action Vector \t', actVec)
+        # ************************************* #
         return actVec
+
+    def summary(self):
+        return {
+            'TouchCount': self.touchCount,
+            'CloseCallCount': self.closeCallCount,
+        }
 
 
 class ObstacleForceV2:
