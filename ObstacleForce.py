@@ -103,4 +103,4 @@ class ObstacleForceV2:
             new_angle = self.angle - 180
         print(new_angle)
 
-        return (0, new_angle)
+        return (rawData, new_angle)
