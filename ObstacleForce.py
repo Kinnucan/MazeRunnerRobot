@@ -85,11 +85,15 @@ class ObstacleForceV2:
             rawData = self.robot.ultraSensor.distance_centimeters
             # self.robot.steerMove(100.0, (-1 * steerHeading))
             self.robot.turnRight(30, runTime)
+        print("Sensor Reading:")
+        print(rawData)
 
         if(rawData > 500):
             rawData = 500
         if(rawData < 0):
             rawData = 0
+        print("Modified rawData:")
+        print(rawData)
 
         new_angle = 0
 
@@ -97,5 +101,6 @@ class ObstacleForceV2:
             new_angle = self.angle + 180
         elif (self.angle > 0):
             new_angle = self.angle - 180
+        print(new_angle)
 
         return (0, new_angle)
