@@ -1,5 +1,5 @@
 import random
-
+import time
 
 class ObstacleForce:
     def __init__(self, obj):
@@ -84,25 +84,29 @@ class ObstacleForceV2:
     def run(self):
         rawData = 0
         # steerHeading = ((self.angle / 180.0) * 100.0)
-        runTime = ((abs(self.angle) / 180.0) * 10.0)
+        runTime = ((abs(self.angle) / 180.0) * 1.0)
 
         if (self.angle > 0):
             self.robot.turnRight(30, runTime)
             # self.robot.steerMove(100.0, steerHeading)
             rawData = self.robot.ultraSensor.distance_centimeters
             # self.robot.steerMove(100.0, (-1 * steerHeading))
-            self.robot.turnLeft((-1 * 30), runTime)
+            self.robot.turnLeft(30, runTime)
         elif (self.angle < 0):
             self.robot.turnLeft(30, runTime)
             # self.robot.steerMove(100.0, steerHeading)
             rawData = self.robot.ultraSensor.distance_centimeters
             # self.robot.steerMove(100.0, (-1 * steerHeading))
-            self.robot.turnRight((-1 * 30), runTime)
+            self.robot.turnRight(30, runTime)
+        print("Sensor Reading:")
+        print(rawData)
 
         if(rawData > 500):
             rawData = 500
         if(rawData < 0):
             rawData = 0
+        print("Modified rawData:")
+        print(rawData)
 
         new_angle = 0
 
@@ -110,5 +114,6 @@ class ObstacleForceV2:
             new_angle = self.angle + 180
         elif (self.angle > 0):
             new_angle = self.angle - 180
+        print(new_angle)
 
-        return (0, new_angle)
+        return (rawData, new_angle)
