@@ -4,7 +4,7 @@ class TowardsColor:
 
     def __init__(self, obj):
         self.robot = obj
-        self.prevHead = 0
+        # self.prevHead = 0
         self.targetColor = 1
         self.targetFound = False
 
@@ -19,6 +19,6 @@ class TowardsColor:
                 self.targetFound = True
                 return 150.0, 0.0
             else:
-                num = random.randint(self.prevHead - 20, self.prevHead + 20)
-                self.prevHead = num
+                # num = random.randint(self.prevHead - 20, self.prevHead + 20)
+                # self.prevHead = num
                 return 100.0, 0.0

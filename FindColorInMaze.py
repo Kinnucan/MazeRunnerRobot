@@ -23,17 +23,17 @@ def run():
 
     towardsColor = TowardsColor(robot)
     obstacleForce_straight = ObstacleForceV2(robot, 0)
-    obstacleForce_right_angle = ObstacleForceV2(robot, 45)
-    obstacleForce_right = ObstacleForceV2(robot, 90)
-    obstacleForce_left_angle = ObstacleForceV2(robot, -45)
-    obstacleForce_left = ObstacleForceV2(robot, -90)
+    # obstacleForce_right_angle = ObstacleForceV2(robot, 45)
+    # obstacleForce_right = ObstacleForceV2(robot, 90)
+    # obstacleForce_left_angle = ObstacleForceV2(robot, -45)
+    # obstacleForce_left = ObstacleForceV2(robot, -90)
 
     brain.add( towardsColor )
     brain.add( obstacleForce_straight )
-    brain.add( obstacleForce_right_angle )
-    brain.add( obstacleForce_right )
-    brain.add( obstacleForce_left )
-    brain.add( obstacleForce_left_angle )
+    # brain.add( obstacleForce_right_angle )
+    # brain.add( obstacleForce_right )
+    # brain.add( obstacleForce_left )
+    # brain.add( obstacleForce_left_angle )
 
     colorNotFound = True
     while colorNotFound:
