@@ -6,6 +6,9 @@ class Wanderer:
 
     def __init__(self):
         self.prevHead = 0
+        self.directionChangeCount = 0
+        self.leftTurnCount = 0
+        self.rightTurnCount = 0
 
     def run(self):
         # print("Previous heading: ", self.prevHead, "\n")
@@ -23,8 +26,27 @@ class Wanderer:
         mag = 20
         ang = ((self.prevHead + random.randint(-30,  30)) %
                90) * [1, -1][self.prevHead < 0]
+
         self.prevHead = ang
         actVec = (mag * scale, ang)
-        print('[Wanderer] Observation \t',
-              None, ' | Action Vector \t', actVec)
+
+        # ************************************* #
+        if ang/self.prevHead < 0:
+            self.directionChangeCount += 1
+
+        if ang < 0:
+            self.leftTurnCount += 1
+        elif ang > 0:
+            self.rightTurnCount += 1
+        # ************************************* #
+        print('[Wanderer] Observation \t\t',
+              None, '\t| Action Vector \t', actVec)
+        # ************************************* #
         return actVec
+
+    def summary(self):
+        return {
+            'DirectionChangeCount': self.directionChangeCount,
+            'LeftTurnCount': self.leftTurnCount,
+            'RightTurnCount': self.rightTurnCount,
+        }

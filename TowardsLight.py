@@ -2,7 +2,7 @@
 class TowardsLight:
     def __init__(self, obj):
         self.robot = obj
-        self.prevLight = 0
+        self.intensityFreq = {}
 
     def run(self):
         # rawData_ambLight = self.robot.readAmbient()
@@ -35,6 +35,18 @@ class TowardsLight:
             if range[0] <= rawData_ambLight < range[1]:
                 actVec = (mag * scale, 0)
                 break
-        print('[TowardsLight] Observation \t',
-              rawData_ambLight, ' | Action Vector \t', actVec)
+
+        # ************************************* #
+        self.intensityFreq[rawData_ambLight] = self.intensityFreq.get(
+            rawData_ambLight, 0) + 1
+        # ************************************* #
+        print('[TowardsLight] Observation \t\t',
+              rawData_ambLight, '\t| Action Vector \t', actVec)
+        # ************************************* #
+
         return actVec
+
+    def summary(self):
+        return{
+            'IntensityFreq': self.intensityFreq
+        }
