@@ -49,11 +49,15 @@ def run():
     colorNotFound = True
     while colorNotFound:
         try:
-            robot.forward(20.0, 5.0)
-            if (robot.readDistance <= 10):
-                rightDistance = robot.turnRight(30, (90.0 / 180.0))
+            robot.forward(20.0, 1.0)
+            forwardDistance = robot.readDistance()
+            print(forwardDistance)
+            if (forwardDistance <= 10):
+                robot.turnRight(30, (90.0 / 180.0))
+                rightDistance = robot.readDistance()
                 print(rightDistance)
-                leftDistance = robot.turnLeft(30, (180.0 / 180.0))
+                robot.turnLeft(30, (180.0 / 180.0))
+                leftDistance = robot.readDistance()
                 print(leftDistance)
                 if (rightDistance < leftDistance):
                     robot.turnRight(30, (180.0 / 180.0))
