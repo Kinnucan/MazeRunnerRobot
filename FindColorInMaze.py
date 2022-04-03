@@ -19,33 +19,6 @@ config = {
 robot = SturdyBot("Maze Escaper", config)
 
 def run():
-    # brain = PotentialFieldBrain.PotentialFieldBrain(robot)
-
-    # towardsColor = TowardsColor(robot)
-    # obstacleForce_straight = ObstacleForceV2(robot, 0)
-    # # obstacleForce_right_angle = ObstacleForceV2(robot, 45)
-    # # obstacleForce_right = ObstacleForceV2(robot, 90)
-    # # obstacleForce_left_angle = ObstacleForceV2(robot, -45)
-    # # obstacleForce_left = ObstacleForceV2(robot, -90)
-
-    # brain.add( towardsColor )
-    # brain.add( obstacleForce_straight )
-    # # brain.add( obstacleForce_right_angle )
-    # # brain.add( obstacleForce_right )
-    # # brain.add( obstacleForce_left )
-    # # brain.add( obstacleForce_left_angle )
-
-    # colorNotFound = True
-    # while colorNotFound:
-    #     try:
-    #         brain.step()
-    #         if (robot.readColor == 1 and robot.readDistance <= 10):
-    #             colorNotFound = False
-    #     except KeyboardInterrupt:
-    #         brain.stopAll()
-    #         sys.exit(0)
-    # brain.stopAll()
-
     colorNotFound = True
 
     while colorNotFound:
@@ -57,16 +30,16 @@ def run():
             print(forwardDistance)
 
             if (color != 5 and forwardDistance <= 10):
-                robot.turnRight(30, (90.0 / 180.0))
+                robot.turnRight(32, (90.0 / 180.0))
                 rightDistance = robot.readDistance()
                 print(rightDistance)
 
-                robot.turnLeft(30, (180.0 / 180.0))
+                robot.turnLeft(32, (180.0 / 180.0))
                 leftDistance = robot.readDistance()
                 print(leftDistance)
-                
+
                 if (rightDistance > leftDistance):
-                    robot.turnRight(30, (180.0 / 180.0))
+                    robot.turnRight(32, (180.0 / 180.0))
             elif (color == 5):
                 print(color)
                 colorNotFound = False
