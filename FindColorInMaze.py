@@ -64,15 +64,15 @@ def run():
                 robot.turnLeft(30, (180.0 / 180.0))
                 leftDistance = robot.readDistance()
                 print(leftDistance)
-
+                
                 if (rightDistance > leftDistance):
                     robot.turnRight(30, (180.0 / 180.0))
             elif (color == 5):
                 print(color)
                 colorNotFound = False
-                break
         except KeyboardInterrupt:
             print("Robot Stopped")
+            sys.exit(0)
     print("Color Found!")
 
 run()
