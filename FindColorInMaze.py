@@ -59,7 +59,7 @@ def run():
                 robot.turnLeft(30, (180.0 / 180.0))
                 leftDistance = robot.readDistance()
                 print(leftDistance)
-                if (rightDistance < leftDistance):
+                if (rightDistance > leftDistance):
                     robot.turnRight(30, (180.0 / 180.0))
             if (robot.readColor == 5):
                 colorNotFound = False
