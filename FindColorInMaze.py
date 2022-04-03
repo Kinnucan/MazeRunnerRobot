@@ -26,20 +26,30 @@ def run():
             robot.forward(20.0, 1.0)
 
             forwardDistance = robot.readDistance()
-            color = robot.readColor()
             print(forwardDistance)
 
-            if (color != 5 and forwardDistance <= 10):
-                robot.turnRight(32, (90.0 / 180.0))
-                rightDistance = robot.readDistance()
-                print(rightDistance)
+            if (forwardDistance <= 10):
+                while (robot.readDistance() > 2):
+                    robot.forward(5.0, 0.25)
 
-                robot.turnLeft(32, (180.0 / 180.0))
-                leftDistance = robot.readDistance()
-                print(leftDistance)
+                color = robot.readColor()
+                if (color == 5):
+                    print(color)
+                    colorNotFound = False
+                    break
+                else:
+                    robot.backward(20.0, 1.0)
 
-                if (rightDistance > leftDistance):
-                    robot.turnRight(32, (180.0 / 180.0))
+                    robot.turnRight(38, (90.0 / 180.0))
+                    rightDistance = robot.readDistance()
+                    print(rightDistance)
+
+                    robot.turnLeft(38, (180.0 / 180.0))
+                    leftDistance = robot.readDistance()
+                    print(leftDistance)
+
+                    if (rightDistance > leftDistance):
+                        robot.turnRight(38, (180.0 / 180.0))
             elif (color == 5):
                 print(color)
                 colorNotFound = False
