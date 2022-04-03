@@ -47,23 +47,31 @@ def run():
     # brain.stopAll()
 
     colorNotFound = True
+
     while colorNotFound:
         try:
             robot.forward(20.0, 1.0)
+
             forwardDistance = robot.readDistance()
+            color = robot.readColor()
             print(forwardDistance)
-            if (forwardDistance <= 10):
+
+            if (color != 5 and forwardDistance <= 10):
                 robot.turnRight(30, (90.0 / 180.0))
                 rightDistance = robot.readDistance()
                 print(rightDistance)
+
                 robot.turnLeft(30, (180.0 / 180.0))
                 leftDistance = robot.readDistance()
                 print(leftDistance)
+
                 if (rightDistance > leftDistance):
                     robot.turnRight(30, (180.0 / 180.0))
-            if (robot.readColor == 5):
+            elif (color == 5):
+                print(color)
                 colorNotFound = False
-        except:
+                break
+        except KeyboardInterrupt:
             print("Robot Stopped")
     print("Color Found!")
 
